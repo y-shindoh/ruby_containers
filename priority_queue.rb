@@ -11,7 +11,7 @@ class PriorityQueue
     public
     def initialize(compare)
         @array = Array::new
-        @compare = compare
+        @compare = compare	# 第2引数を上に持ち上げる => true
     end
 
     ##############################
@@ -132,7 +132,7 @@ if __FILE__ == $PROGRAM_NAME then
 
     priority_queue.push([10, 5])
 
-    for x in [5, 3, 0, 6,1] do
+    for x in [5, 3, 0, 6, 1] do
         priority_queue.push(x)
     end
 
