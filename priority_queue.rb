@@ -9,9 +9,17 @@ class PriorityQueue
     ##############################
     # コンストラクタ
     public
-    def initialize(compare)
-        @array = Array::new
+    def initialize(compare, array=nil)
+        @array = nil
         @compare = compare	# 第2引数を上に持ち上げる => true
+        if array then
+            @array = array.dup
+            (@array.length / 2).downto(0) { |i|
+                heapy_down(i)
+            }
+        else
+            @array = Array::new
+        end
     end
 
     ##############################
@@ -128,11 +136,15 @@ if __FILE__ == $PROGRAM_NAME then
         return l < r
     end
 
-    priority_queue = PriorityQueue::new(method(:my_compare))
+    priority_queue = PriorityQueue::new(method(:my_compare), [5, 6, 8])
 
-    priority_queue.push([10, 5])
+    puts priority_queue
 
-    for x in [5, 3, 0, 6, 1] do
+    priority_queue.push([9, 5])
+
+    puts priority_queue
+
+    for x in [0, 6, 1] do
         priority_queue.push(x)
     end
 
